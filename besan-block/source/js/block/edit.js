@@ -48,8 +48,8 @@ let besanEdit = ( props ) => {
               label='Chart type'
               value={ type }
               options={ [
-                { label: 'Horizontal Bar', value: 'bar-horizontal' },
                 { label: 'Vertical Bar', value: 'bar-vertical' },
+                { label: 'Horizontal Bar', value: 'bar-horizontal' },
                 { label: 'Pie', value: 'pie' },
               ] }
               onChange={ onChangeType }

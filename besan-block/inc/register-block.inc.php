@@ -11,7 +11,7 @@ function besan_register() {
     'attributes' => array(
       'data'   => array( 'type' => 'string', 'default' => '' ),
       'column' => array( 'type' => 'string', 'default' => 'A' ),
-      'type'   => array( 'type' => 'string', 'default' => 'bar-horizontal' )
+      'type'   => array( 'type' => 'string', 'default' => 'bar-vertical' )
     ),
 
     // Declare render callback function.

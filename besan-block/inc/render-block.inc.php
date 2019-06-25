@@ -4,7 +4,6 @@
  */
 
 require_once( 'get-sheet-data.inc.php' );
-require_once( 'get-svg.inc.php' );
 
 function besan_render( $attributes, $content ) {
   // TODO: Make the user add this as an attribute so I'm not storing this key here.
@@ -16,7 +15,6 @@ function besan_render( $attributes, $content ) {
 
   // Find and count all of the unique values in the data.
   $data = array();
-
   foreach ( $data_body['values'] as $d ) {
     if ( $data[ $d[0] ] ) {
       $data[ $d[0] ]++;
@@ -25,5 +23,18 @@ function besan_render( $attributes, $content ) {
     }
   }
 
-  return besan_get_svg( $data );
+  // Return the SVG based on the selected chart type.
+  switch( $attributes['type'] ) {
+    case 'bar-vertical':
+      require_once( 'get-svg-bar-vertical.inc.php' );
+      return besan_get_svg_bar_vertical( $data );
+
+    case 'bar-horizontal':
+      require_once( 'get-svg-bar-horizontal.inc.php' );
+      return besan_get_svg_bar_horizontal( $data );
+
+    default:
+      require_once( 'get-svg-bar-vertical.inc.php' );
+      return besan_get_svg_bar_vertical( $data );
+  }
 }
