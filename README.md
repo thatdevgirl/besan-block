@@ -1,2 +1,3 @@
-# besan-block
-Charting block for the WordPress post editor
+# Besan Block
+
+This WordPress plugin adds a charting block to the post editor.
