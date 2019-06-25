@@ -11,6 +11,7 @@ function besan_register() {
     'attributes' => array(
       'data'   => array( 'type' => 'string', 'default' => '' ),
       'column' => array( 'type' => 'string', 'default' => 'A' ),
+      'label'  => array( 'type' => 'string', 'default' => '' ),
       'type'   => array( 'type' => 'string', 'default' => 'bar-vertical' )
     ),
 

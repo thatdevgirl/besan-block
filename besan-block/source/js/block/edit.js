@@ -9,11 +9,12 @@ const { Fragment } = wp.element;
 let besanEdit = ( props ) => {
   // Get the values needed from props.
   const { isSelected, setAttributes } = props;
-  const { data, column, type } = props.attributes;
+  const { data, column, label, type } = props.attributes;
 
   // Declare change event handlers.
   const onChangeData   = ( value ) => { setAttributes( { data: value } ) };
   const onChangeColumn = ( value ) => { setAttributes( { column: value } ) };
+  const onChangeLabel  = ( value ) => { setAttributes( { label: value } ) };
   const onChangeType   = ( value ) => { setAttributes( { type: value } ) };
 
   // Return the edit UI.
@@ -39,6 +40,12 @@ let besanEdit = ( props ) => {
               label='Column to chart'
               value={ column }
               onChange={ onChangeColumn }
+            />
+
+            <TextControl
+              label='Data label'
+              value={ label }
+              onChange={ onChangeLabel }
             />
           </PanelBody>
 
