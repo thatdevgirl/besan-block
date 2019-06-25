@@ -6,7 +6,6 @@
 require_once( 'render-block.inc.php' );
 
 function besan_register() {
-
   register_block_type( 'tdg/chart', array(
     // Set up block attributes.
     'attributes' => array(
@@ -18,7 +17,6 @@ function besan_register() {
     // Declare render callback function.
     'render_callback' => 'besan_render'
   ) );
-
 }
 
 // HOOK for block registration.
