@@ -33,7 +33,7 @@ let besanEdit = ( props ) => {
 
             <p>
               <strong>Important!</strong> <br />
-              The Google sheet <em>must</em> be publically viewable.
+              The Google sheet <em>must</em> be publicly viewable.
             </p>
 
             <TextControl
