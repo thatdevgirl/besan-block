@@ -3,11 +3,11 @@
  * Helper function to create SVG for a vertical bar chart.
  */
 
-function besan_get_svg_bar_vertical( $data, $label ) {
+function besan_get_svg_bar_vertical( $data, $title ) {
   $consts = _besan_bv_set_consts( $data );
   $svg = '';
 
-  _besan_bv_get_svg_start( $svg, $consts, $label );
+  _besan_bv_get_svg_start( $svg, $consts, $title );
   _besan_bv_get_data( $svg, $data, $consts );
   _besan_bv_get_svg_end( $svg );
 
@@ -35,12 +35,12 @@ function _besan_bv_set_consts( $data ) {
 
 
 // [HELPER] Function to write out the start of the SVG object.
-function _besan_bv_get_svg_start( &$svg, $consts, $label ) {
+function _besan_bv_get_svg_start( &$svg, $consts, $title ) {
   // Start the SVG structure.
   $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="' . $consts['height_total_px'] . '"';
 
   // Set the description of this SVG.
-  $svg .= '<desc>Chart of ' . $label . '</desc>';
+  $svg .= '<desc>Chart of ' . $title . '</desc>';
 
   // Make the defining lines of the chart.
   $svg .= '<g class="chart-container">';

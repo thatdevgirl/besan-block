@@ -6,13 +6,17 @@
 require_once( 'get-sheet-data.inc.php' );
 
 function besan_render( $attributes, $content ) {
+  $data = _besan_process_data( $attributes );
+  $svg = _besan_construct_svg( $attributes, $data );
+  return _besan_construct_block( $attributes, $svg );
+}
+
+// [HELPER] Function to process relevant data from raw data.
+function _besan_process_data( $attributes ) {
   // TODO: Make the user add this as an attribute so I'm not storing this key here.
   $api_key = esc_attr( 'AIzaSyDIxAtGtNO5Z43U6pND2YXhJzuysOsLoyY' );
 
-  // Get the data label.
-  $label = $attributes['label'];
-
-  // Get the relevant data.
+  // Get the data from the Google sheet.
   $raw_data = besan_get_sheet_data( $attributes, $api_key );
   $data_body = json_decode( $raw_data['body'], true );
 
@@ -26,18 +30,43 @@ function besan_render( $attributes, $content ) {
     }
   }
 
-  // Return the SVG based on the selected chart type.
+  return $data;
+}
+
+// [HELPER] Function to construct the SVG based on the data.
+function _besan_construct_svg( $attributes, $data ) {
   switch( $attributes['type'] ) {
     case 'bar-vertical':
       require_once( 'get-svg-bar-vertical.inc.php' );
-      return besan_get_svg_bar_vertical( $data, $label );
+      return besan_get_svg_bar_vertical( $data, $attributes['title'] );
 
     case 'bar-horizontal':
       require_once( 'get-svg-bar-horizontal.inc.php' );
-      return besan_get_svg_bar_horizontal( $data, $label );
+      return besan_get_svg_bar_horizontal( $data, $attributes['title'] );
 
     default:
       require_once( 'get-svg-bar-vertical.inc.php' );
-      return besan_get_svg_bar_vertical( $data, $label );
+      return besan_get_svg_bar_vertical( $data, $attributes['title'] );
   }
+}
+
+// [HELPER] Function to construct the HTML for the overall block.
+function _besan_construct_block( $attributes, $svg ) {
+  $html = '<figure class="besan-chart">';
+
+  // Add the title, if it exists.
+  if ( $attributes['title'] ) {
+    $html .= '<h3>' . $attributes['title'] . '</h3>';
+  }
+
+  // Add the SVG chart.
+  $html .= $svg;
+
+  // Add the caption, if it exists.
+  if ( $attributes['caption'] ) {
+    $html .= '<figcaption>' . $attributes['caption'] . '</figcaption>';
+  }
+
+  $html .= '</figure>';
+  return $html;
 }

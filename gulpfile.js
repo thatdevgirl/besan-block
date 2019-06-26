@@ -3,12 +3,15 @@
  */
 
 // Declare gulp libraries.
-const gulp = require( 'gulp' ),
-      babel = require( 'gulp-babel' );
+const gulp       = require( 'gulp' ),
+      babel      = require( 'gulp-babel' );
       browserify = require( 'browserify' ),
-      buffer = require( 'vinyl-buffer' ),
-      source = require( 'vinyl-source-stream' ),
-      uglify = require( 'gulp-uglify' );
+      buffer     = require( 'vinyl-buffer' ),
+      minifyCSS  = require( 'gulp-minify-css' ),
+      rename     = require( 'gulp-rename' ),
+      sass       = require( 'gulp-sass' ),
+      source     = require( 'vinyl-source-stream' ),
+      uglify     = require( 'gulp-uglify' );
 
 // Array of JS files, in order by dependency.
 const jsFiles = [
@@ -26,5 +29,17 @@ function buildJs() {
     .pipe( gulp.dest( 'besan-block/build' ) );
 }
 
+// Task function to build the CSS files.
+function buildCss() {
+  return gulp.src( 'besan-block/source/scss/styles.scss' )
+    .pipe( sass().on( 'error', sass.logError ) )
+    .pipe( minifyCSS() )
+    .pipe( rename( {
+      basename: 'besan-block',
+      suffix: '.min'
+    } ) )
+    .pipe( gulp.dest( 'besan-block/build' ) );
+}
+
 // Task definitions.
-gulp.task( 'default', buildJs );
+gulp.task( 'default', gulp.series( buildJs, buildCss ) );

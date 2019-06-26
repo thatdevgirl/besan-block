@@ -12,6 +12,9 @@
     "browserify": "^16.2.3",
     "gulp": "^4.0.0",
     "gulp-babel": "^7.0.1",
+    "gulp-minify-css": "latest",
+    "gulp-rename": "latest",
+    "gulp-sass": "latest",
     "gulp-uglify": "^3.0.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"

@@ -1,0 +1,54 @@
+/**
+ * Editor styles for the Chart block.
+ */
+
+$placeholder-bg: #e5e5e5;
+$notice-bg:      #ffd4d9;
+$notice-color:   #000;
+$notice-link:    #5a4146;
+
+
+// Inspector panel styles.
+.bb-notice {
+  background-color: $notice-bg;
+  color: $notice-color;
+  padding: 0.75rem;
+
+  a {
+    color: $notice-link;
+
+    &:hover, &:focus {
+      color: darken( $notice-link, 20% );
+    }
+  }
+}
+
+
+// In-editor styles.
+#bb-chart-edit {
+
+  // Chart placeholder.
+  .bb-placeholder {
+    background-color: $placeholder-bg;
+    border-radius: 0.25rem;
+    font-family: sans-serif;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  // Title field.
+  .bb-edit-title input {
+    border: 0;
+    font-size: 1.5rem;
+  }
+
+  // Caption field.
+  .bb-edit-caption input {
+    border: 0;
+    font-size: 1rem;
+    font-style: italic;
+  }
+
+}

@@ -9,13 +9,14 @@ const { Fragment } = wp.element;
 let besanEdit = ( props ) => {
   // Get the values needed from props.
   const { isSelected, setAttributes } = props;
-  const { data, column, label, type } = props.attributes;
+  const { data, column, type, title, caption } = props.attributes;
 
   // Declare change event handlers.
-  const onChangeData   = ( value ) => { setAttributes( { data: value } ) };
-  const onChangeColumn = ( value ) => { setAttributes( { column: value } ) };
-  const onChangeLabel  = ( value ) => { setAttributes( { label: value } ) };
-  const onChangeType   = ( value ) => { setAttributes( { type: value } ) };
+  const onChangeData    = ( value ) => { setAttributes( { data: value } ) };
+  const onChangeColumn  = ( value ) => { setAttributes( { column: value } ) };
+  const onChangeType    = ( value ) => { setAttributes( { type: value } ) };
+  const onChangeTitle   = ( value ) => { setAttributes( { title: value } ) };
+  const onChangeCaption = ( value ) => { setAttributes( { caption: value } ) };
 
   // Return the edit UI.
   return (
@@ -25,27 +26,22 @@ let besanEdit = ( props ) => {
 
           { /* Chart data input. */ }
           <PanelBody title='Data'>
+            <p className='bb-notice'>
+              <strong>Important!</strong> <br />
+              { data && ( <span>The <a href={ data }>Google sheet</a> <em>must</em> be publicly viewable.</span> ) }
+              { ! data && ( <span>The Google sheet <em>must</em> be publicly viewable.</span> ) }
+            </p>
+
             <TextControl
               label='Google Sheets URL'
               value={ data }
               onChange={ onChangeData }
             />
 
-            <p>
-              <strong>Important!</strong> <br />
-              The Google sheet <em>must</em> be publicly viewable.
-            </p>
-
             <TextControl
               label='Column to chart'
               value={ column }
               onChange={ onChangeColumn }
-            />
-
-            <TextControl
-              label='Data label'
-              value={ label }
-              onChange={ onChangeLabel }
             />
           </PanelBody>
 
@@ -66,7 +62,25 @@ let besanEdit = ( props ) => {
         </InspectorControls>
       ) }
 
-      <p>This will be a { type }.</p>
+      <div id="bb-chart-edit">
+        <TextControl
+          value={ title }
+          placeholder={ 'Write chart title...' }
+          onChange={ onChangeTitle }
+          className='bb-edit-title'
+        />
+
+        <div className='bb-placeholder'>
+          Chart
+        </div>
+
+        <TextControl
+          value={ caption }
+          placeholder={ 'Write chart caption...' }
+          onChange={ onChangeCaption }
+          className='bb-edit-caption'
+        />
+      </div>
     </Fragment>
   );
 };
