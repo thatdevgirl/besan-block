@@ -70,9 +70,7 @@ let besanEdit = ( props ) => {
           className='bb-edit-title'
         />
 
-        <div className='bb-placeholder'>
-          Chart
-        </div>
+        <div className={`bb-placeholder ${type}`}></div>
 
         <TextControl
           value={ caption }

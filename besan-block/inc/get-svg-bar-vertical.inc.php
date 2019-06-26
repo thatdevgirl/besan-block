@@ -40,7 +40,7 @@ function _besan_bv_get_svg_start( &$svg, $consts, $title ) {
   $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="' . $consts['height_total_px'] . '"';
 
   // Set the description of this SVG.
-  $svg .= '<desc>Chart of ' . $title . '</desc>';
+  $svg .= '<title>Chart: ' . $title . '</title>';
 
   // Make the defining lines of the chart.
   $svg .= '<g class="chart-container">';
