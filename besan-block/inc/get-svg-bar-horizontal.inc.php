@@ -38,17 +38,21 @@ function _besan_bh_set_consts( $data ) {
 // [HELPER] Function to write out the start of the SVG object.
 function _besan_bh_get_svg_start( &$svg, $consts, $title ) {
   // Start the SVG structure.
-  $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="' . $consts['height_total_px'] . '"';
+  $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="' . $consts['height_total_px'] . '">';
 
-  // Set the description of this SVG.
-  $svg .= '<title>Chart: ' . $title . '</title>';
+  // Set the title of this SVG.
+  if ( $title ) {
+    $svg .= '<title>Data chart depicting ' . $title . '</title>';
+  } else {
+    $svg .= '<title>Data chart</title>';
+  }
 
   // Make the defining lines of the chart.
   $svg .= '<g class="chart-container">';
-  $svg .= '<line x1="' . $consts['offset_chart_pct'] . '%" y1="0" x2="' . $consts['offset_chart_pct'] . '%" y2="' . $consts['height_chart_px'] . '" stroke="' . $consts['base_color'] . '" stroke-width="2" />';
-  $svg .= '<line x1="' . $consts['offset_chart_pct'] . '%" y1="' . $consts['height_chart_px'] . '" x2="100%" y2="' . $consts['height_chart_px'] . '" stroke="' . $consts['base_color'] . '" stroke-width="2" />';
-  $svg .= '<text x="98%" y="' . $consts['label_x_axis_px'] . '" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">' . $consts['max_value'] . '</text>';
-  $svg .= '<text x="' . $consts['offset_chart_pct'] . '%" y="' . $consts['label_x_axis_px'] . '" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">0</text>';
+  $svg .= '<line role="presentation" x1="' . $consts['offset_chart_pct'] . '%" y1="0" x2="' . $consts['offset_chart_pct'] . '%" y2="' . $consts['height_chart_px'] . '" stroke="' . $consts['base_color'] . '" stroke-width="2" />';
+  $svg .= '<line role="presentation" x1="' . $consts['offset_chart_pct'] . '%" y1="' . $consts['height_chart_px'] . '" x2="100%" y2="' . $consts['height_chart_px'] . '" stroke="' . $consts['base_color'] . '" stroke-width="2" />';
+  $svg .= '<text role="presentation" x="98%" y="' . $consts['label_x_axis_px'] . '" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">' . $consts['max_value'] . '</text>';
+  $svg .= '<text role="presentation" x="' . $consts['offset_chart_pct'] . '%" y="' . $consts['label_x_axis_px'] . '" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">0</text>';
   $svg .= '</g>';
 }
 
@@ -59,22 +63,27 @@ function _besan_bh_get_data( &$svg, $data, $consts ) {
   $offset = 0;
   $label_offset = 30;
 
+  // Contain all the bars in a parent group.
+  $svg .= '<g role="list" aria-label="Bar graph">';
+
   // Loop through each item and create the bar and its label.
   foreach ( $data as $key => $d ) {
     // Calculate the width of the bar, based on its value.
     $bar_width = $d / $consts['max_value'] * 100;
 
     // Write out the data.
-    $svg .= '<g>';
-    $svg .= '<desc>' . $d . ' entries are ' . $key . '</desc>';
-    $svg .= '<rect x="' . $consts['offset_chart_pct'] . '%" y="' . $offset . '" width="' . $bar_width . '%" height="' . $consts['height_bar_px'] . '" fill="#0000ff" />';
-    $svg .= '<text x="0" y="' . $label_offset . '" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">' . $key . '</text>';
+    $svg .= '<g role="listitem" aria-label="' . $key . ', ' . $d . '" tabindex="0">';
+    $svg .= '<rect role="presentation" x="' . $consts['offset_chart_pct'] . '%" y="' . $offset . '" width="' . $bar_width . '%" height="' . $consts['height_bar_px'] . '" fill="#0000ff" />';
+    $svg .= '<text role="presentation" x="0" y="' . $label_offset . '" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">' . $key . '</text>';
     $svg .= '</g>';
 
     // Calculate the offset for the next bar.
     $offset += $consts['offset_bar_px'] + $consts['height_bar_px'];
     $label_offset = $offset + 30;
   }
+
+  // End the parent group container.
+  $svg .= '</g>';
 }
 
 

@@ -7,17 +7,28 @@ Requires PHP: 7.0
 Tested up to: 5.2.2
 Stable tag: 1.0
 
-Add a charting block to the post editor.
+Add a responsive and accessible data chart block to posts and pages.
 
 == Description ==
 
-This WordPress plugin adds a charting block to the post editor.
+This WordPress plugin adds a responsive and accessible data chart block to the post editor. The chart feeds off of data from a publicly viewable Google sheet.
 
 == Installation ==
 
-1. Upload the plugin to your WordPress installation.
-2. Activate the plugin through the 'Plugins' menu in the WordPress admin.
-3. Edit any page or post and look for the 'Chart' block in the block library.
+1. In the WordPress admin, install and enable the "Besan Block" plugin.
+
+2. Edit any page or post and add the "Chart" editor block.
+
+3. In the Inspector panel (on the right-hand side of the editor), enter the following information:
+  * The URL of your publicly viewable Google sheet
+  * The column of data that your chart will be based on
+  * What kind of chart you would like to display
+
+4. Optionally _(but preferably)_, enter a title and caption for the chart inside the editor.
+
+5. Save and view the page!
+
+The block will calculate the number of unique values inside that column and create a chart based on that data.
 
 == Frequently Asked Questions ==
 
