@@ -16,5 +16,6 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 require_once( 'inc/set-plugin-meta.inc.php' );
+require_once( 'inc/set-options-page.inc.php' );
 require_once( 'inc/set-assets.inc.php' );
 require_once( 'inc/register-block.inc.php' );

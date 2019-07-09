@@ -21,7 +21,7 @@ The block will calculate the number of unique values inside that column and crea
 
 * Vertical bar chart
 * Horizontal bar chart
-* Pie chart _(doesn't actually work)_
+* Pie chart _(coming soon!)_
 
 ## Development notes and to-dos
 
