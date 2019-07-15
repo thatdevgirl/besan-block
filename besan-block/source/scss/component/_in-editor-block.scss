@@ -1,0 +1,46 @@
+/**
+ * In-editor block styles.
+ */
+
+#bb-chart-edit {
+
+  // Chart placeholder.
+  .bb-placeholder {
+    background-color: $placeholder-bg;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 0.25rem;
+    font-family: sans-serif;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 6rem 2rem;
+    text-align: center;
+
+    &.bar-vertical {
+      background-image: url('../images/bar-vertical.svg');
+    }
+
+    &.bar-horizontal {
+      background-image: url('../images/bar-horizontal.svg');
+    }
+
+    &.pie {
+      background-image: url('../images/pie.svg');
+    }
+  }
+
+  // Title field.
+  .bb-edit-title input {
+    border: 0;
+    font-size: 1.5rem;
+  }
+
+  // Caption field.
+  .bb-edit-caption input {
+    border: 0;
+    font-size: 1rem;
+    font-style: italic;
+  }
+
+}

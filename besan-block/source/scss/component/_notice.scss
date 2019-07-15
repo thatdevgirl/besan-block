@@ -1,0 +1,17 @@
+/**
+ * In-editor notice.
+ */
+
+div.bb-notice {
+  background-color: $notice-bg;
+  color: $notice-color;
+  padding: 0.75rem;
+
+  a {
+    color: $notice-link;
+
+    &:hover, &:focus {
+      color: darken( $notice-link, 20% );
+    }
+  }
+}
