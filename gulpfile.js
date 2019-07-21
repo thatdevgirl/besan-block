@@ -4,7 +4,6 @@
 
 // Declare gulp libraries.
 const gulp       = require( 'gulp' ),
-      babel      = require( 'gulp-babel' );
       browserify = require( 'browserify' ),
       buffer     = require( 'vinyl-buffer' ),
       minifyCSS  = require( 'gulp-minify-css' ),
@@ -21,7 +20,7 @@ const jsFiles = [
 // Task function to build the JS files.
 function buildJs() {
   return browserify( { entries: jsFiles } )
-    .transform( 'babelify', { presets: ['es2015', 'react'] } )
+    .transform( 'babelify', { presets: [ "@babel/preset-env", "@babel/preset-react" ] } )
     .bundle()
     .pipe( source( 'besan-block.min.js' ) )
     .pipe( buffer() )

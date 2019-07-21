@@ -4,7 +4,7 @@
   "description": "Besan Block gulp tasks",
   "main": "gulpfile.js",
   "devDependencies": {
-    "@babel/core": "^7.5.4",
+    "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
     "babel-preset-minify": "^0.5.0",
