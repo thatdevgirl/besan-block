@@ -37,11 +37,11 @@ function _besan_construct_svg( $attributes, $data ) {
   switch( $attributes['type'] ) {
     case 'bar-vertical':
       require_once( 'get-svg-bar-vertical.inc.php' );
-      return besan_get_svg_bar_vertical( $data, $attributes['title'] );
+      return besan_get_svg_bar_vertical( $data, $attributes['title'], $attributes['color'] );
 
     case 'bar-horizontal':
       require_once( 'get-svg-bar-horizontal.inc.php' );
-      return besan_get_svg_bar_horizontal( $data, $attributes['title'] );
+      return besan_get_svg_bar_horizontal( $data, $attributes['title'], $attributes['color'] );
 
     default:
       require_once( 'get-svg-bar-vertical.inc.php' );

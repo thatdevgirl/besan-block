@@ -13,7 +13,8 @@ function besan_register() {
       'column'  => array( 'type' => 'string', 'default' => 'A' ),
       'type'    => array( 'type' => 'string', 'default' => 'bar-vertical' ),
       'title'   => array( 'type' => 'string', 'default' => '' ),
-      'caption' => array( 'type' => 'string', 'default' => '' )
+      'caption' => array( 'type' => 'string', 'default' => '' ),
+      'color'   => array( 'type' => 'string', 'default' => '#000000' )
     ),
 
     // Declare render callback function.

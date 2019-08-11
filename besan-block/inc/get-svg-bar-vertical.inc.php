@@ -3,8 +3,8 @@
  * Helper function to create SVG for a vertical bar chart.
  */
 
-function besan_get_svg_bar_vertical( $data, $title ) {
-  $consts = _besan_bv_set_consts( $data );
+function besan_get_svg_bar_vertical( $data, $title, $chart_color ) {
+  $consts = _besan_bv_set_consts( $data, $chart_color );
   $svg = '';
 
   _besan_bv_get_svg_start( $svg, $consts, $title );
@@ -16,7 +16,7 @@ function besan_get_svg_bar_vertical( $data, $title ) {
 
 
 // [HELPER] Function to set constant values for chart creation.
-function _besan_bv_set_consts( $data ) {
+function _besan_bv_set_consts( $data, $chart_color ) {
   $consts = array(
     'height_total_px'  => 400,
     'height_chart_px'  => 360,
@@ -25,6 +25,7 @@ function _besan_bv_set_consts( $data ) {
     'offset_bar_pct'   => 2,
     'max_value'        => max( $data ),
     'base_color'       => '#000000',
+    'chart_color'      => $chart_color,
     'font_size'        => '14'
   );
 
@@ -75,7 +76,7 @@ function _besan_bv_get_data( &$svg, $data, $consts ) {
 
     // Write out the data.
     $svg .= '<g role="listitem" aria-label="' . $key . ', ' . $d . '" tabindex="0">';
-    $svg .= '<rect role="presentation" x="' . $offset . '%" y="' . $bar_offset . '" width="' . $bar_width . '%" height="' . $bar_height . '" fill="#ff0000" />';
+    $svg .= '<rect role="presentation" x="' . $offset . '%" y="' . $bar_offset . '" width="' . $bar_width . '%" height="' . $bar_height . '" fill="' . $consts['chart_color'] . '" />';
     $svg .= '<text role="presentation" x="' . $offset . '%" y="' . $consts['label_x_axis_px'] . '" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">' . $key . '</text>';
     $svg .= '</g>';
 

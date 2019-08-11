@@ -15,14 +15,18 @@ This WordPress plugin adds a responsive and accessible data chart block to the p
 
 == Installation ==
 
+
 1. In the WordPress admin, install and enable the "Besan Block" plugin.
 
-2. Edit any page or post and add the "Chart" editor block.
+2. Enter your Google Sheets API key on the plugin's settings page.
 
-3. In the Inspector panel (on the right-hand side of the editor), enter the following information:
+3. Edit any page or post and add the "Chart" editor block.
+
+4. In the Inspector panel (on the right-hand side of the editor), enter the following information:
   * The URL of your publicly viewable Google sheet
   * The column of data that your chart will be based on
   * What kind of chart you would like to display
+  * What color the bars of the chart should be.
 
 4. Optionally _(but preferably)_, enter a title and caption for the chart inside the editor.
 
@@ -38,7 +42,7 @@ The block will calculate the number of unique values inside that column and crea
 
 = What kinds of charts do you support? =
 
-So far, only bar charts (horizontal and vertical). More charts coming soon... or, well, eventually.
+So far, only bar charts (horizontal and vertical). More charts (including pie charts) are coming soon... or, well, eventually.
 
 == Screenshots ==
 

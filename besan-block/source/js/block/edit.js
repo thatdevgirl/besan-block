@@ -2,14 +2,14 @@
  * EDIT: Chart block
  */
 
-const { PanelBody, SelectControl, TextControl } = wp.components;
+const { ColorPicker, PanelBody, SelectControl, TextControl } = wp.components;
 const { InspectorControls } = wp.editor;
 const { Fragment } = wp.element;
 
 let besanEdit = ( props ) => {
   // Get the values needed from props.
   const { isSelected, setAttributes } = props;
-  const { data, column, type, title, caption } = props.attributes;
+  const { data, column, type, title, caption, color } = props.attributes;
 
   // Declare change event handlers.
   const onChangeData    = ( value ) => { setAttributes( { data: value } ) };
@@ -17,6 +17,7 @@ let besanEdit = ( props ) => {
   const onChangeType    = ( value ) => { setAttributes( { type: value } ) };
   const onChangeTitle   = ( value ) => { setAttributes( { title: value } ) };
   const onChangeCaption = ( value ) => { setAttributes( { caption: value } ) };
+  const onChangeColor   = ( value ) => { setAttributes( { color: value.hex } ) };
 
   // Return the edit UI.
   return (
@@ -63,11 +64,19 @@ let besanEdit = ( props ) => {
               value={ type }
               options={ [
                 { label: 'Vertical Bar', value: 'bar-vertical' },
-                { label: 'Horizontal Bar', value: 'bar-horizontal' },
-                { label: 'Pie', value: 'pie' },
+                { label: 'Horizontal Bar', value: 'bar-horizontal' }
               ] }
               onChange={ onChangeType }
             />
+
+            <label>
+              Chart color
+              <ColorPicker
+                color={ color }
+                onChangeComplete={ onChangeColor }
+                disableAlpha
+              />
+            </label>
           </PanelBody>
 
         </InspectorControls>
