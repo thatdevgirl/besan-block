@@ -54,11 +54,6 @@ function _besan_construct_svg( $attributes, $data ) {
 function _besan_construct_block( $attributes, $svg ) {
   $html = '<figure class="besan-chart">';
 
-  // Add the title, if it exists.
-  if ( $attributes['title'] ) {
-    $html .= '<h3>' . $attributes['title'] . '</h3>';
-  }
-
   // Add the SVG chart.
   $html .= $svg;
 

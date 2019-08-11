@@ -43,10 +43,17 @@ let besanEdit = ( props ) => {
               value={ column }
               onChange={ onChangeColumn }
             />
+
+            <TextControl
+              label='Chart title'
+              help='(A short description, used to make the chart more accessible for screen readers.)'
+              value={ title }
+              onChange={ onChangeTitle }
+            />
           </PanelBody>
 
           { /* Overall style options. */ }
-          <PanelBody title='Chart options'>
+          <PanelBody title='Display options'>
             <SelectControl
               label='Chart type'
               value={ type }
@@ -63,13 +70,6 @@ let besanEdit = ( props ) => {
       ) }
 
       <div id="bb-chart-edit">
-        <TextControl
-          value={ title }
-          placeholder={ 'Write chart title...' }
-          onChange={ onChangeTitle }
-          className='bb-edit-title'
-        />
-
         <div className={`bb-placeholder ${type}`}></div>
 
         <TextControl

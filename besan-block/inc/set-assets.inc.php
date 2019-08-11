@@ -35,21 +35,3 @@ function bb_enqueue_admin_assets() {
     filemtime( plugin_dir_path( __FILE__ ) . $css )
   );
 }
-
-
-/**
- * Add CSS to the front-end.
- */
-
-add_action( 'wp_enqueue_scripts', 'bb_enqueue_frontend_assets' );
-
-function bb_enqueue_frontend_assets() {
-  $css = '../build/besan-block.min.css';
-
-  wp_enqueue_style(
-    'bb-frontend-css',
-    plugins_url( $css, __FILE__ ),
-    array(),
-    filemtime( plugin_dir_path( __FILE__ ) . $css )
-  );
-}

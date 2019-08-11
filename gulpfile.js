@@ -40,17 +40,5 @@ function buildEditorCss() {
     .pipe( gulp.dest( 'besan-block/build' ) );
 }
 
-// Task function to build the CSS files.
-function buildFrontendCss() {
-  return gulp.src( 'besan-block/source/scss/frontend.scss' )
-    .pipe( sass().on( 'error', sass.logError ) )
-    .pipe( minifyCSS() )
-    .pipe( rename( {
-      basename: 'besan-block',
-      suffix: '.min'
-    } ) )
-    .pipe( gulp.dest( 'besan-block/build' ) );
-}
-
 // Task definitions.
-gulp.task( 'default', gulp.series( buildJs, buildEditorCss, buildFrontendCss ) );
+gulp.task( 'default', gulp.series( buildJs, buildEditorCss ) );

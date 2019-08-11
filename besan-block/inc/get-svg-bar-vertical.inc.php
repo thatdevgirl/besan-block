@@ -25,7 +25,7 @@ function _besan_bv_set_consts( $data ) {
     'offset_bar_pct'   => 2,
     'max_value'        => max( $data ),
     'base_color'       => '#000000',
-    'font_size'        => '16'
+    'font_size'        => '14'
   );
 
   $consts['bar_base_px'] = $consts['height_total_px'] - $consts['height_chart_px'] - 2;
@@ -40,17 +40,13 @@ function _besan_bv_get_svg_start( &$svg, $consts, $title ) {
   $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="' . $consts['height_total_px'] . '">';
 
   // Set the title of this SVG.
-  if ( $title ) {
-    $svg .= '<title>Data chart depicting ' . $title . '</title>';
-  } else {
-    $svg .= '<title>Data chart</title>';
-  }
+  $svg .= ( $title ) ? '<title>' . $title . '</title>' : '<title>Data chart</title>';
 
   // Make the defining lines of the chart.
   $svg .= '<g class="chart-container">';
   $svg .= '<line role="presentation" x1="' . $consts['offset_chart_pct'] . '%" y1="0" x2="' . $consts['offset_chart_pct'] . '%" y2="' . $consts['height_chart_px'] . '" stroke="' . $consts['base_color'] . '" stroke-width="2" />';
   $svg .= '<line role="presentation" x1="' . $consts['offset_chart_pct'] . '%" y1="' . $consts['height_chart_px'] . '" x2="100%" y2="' . $consts['height_chart_px'] . '" stroke="' . $consts['base_color'] . '" stroke-width="2" />';
-  $svg .= '<text role="presentation" x="5%" y="10" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">' . $consts['max_value'] . '</text>';
+  $svg .= '<text role="presentation" x="5%" y="20" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">' . $consts['max_value'] . '</text>';
   $svg .= '<text role="presentation" x="5%" y="' . $consts['height_chart_px'] . '" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">0</text>';
   $svg .= '</g>';
 }
