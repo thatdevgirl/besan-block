@@ -15,6 +15,16 @@ function bb_enqueue_editor_assets() {
     array( 'wp-blocks', 'wp-editor', 'wp-components' ),
     filemtime( plugin_dir_path( __FILE__ ) . $js )
   );
+
+  // Get the Google API key from WP options.
+  $options = get_option( 'bb_api_key' );
+
+  $jsData = array(
+    'apiKey' => $options['bb_api_key'],
+  );
+
+  // Pass the API option to the editor JS.
+  wp_localize_script( 'bb-editor-blocks-js', 'bbOptions', $jsData );
 }
 
 

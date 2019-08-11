@@ -26,14 +26,18 @@ let besanEdit = ( props ) => {
 
           { /* Chart data input. */ }
           <PanelBody title='Data'>
-            <p className='bb-notice'>
-              <strong>Important!</strong> <br />
-              { data && ( <span>The <a href={ data }>Google sheet</a> <em>must</em> be publicly viewable.</span> ) }
-              { ! data && ( <span>The Google sheet <em>must</em> be publicly viewable.</span> ) }
-            </p>
+
+            { ! bbOptions.apiKey && (
+              <p className='bb-notice'>
+                <strong>Important!</strong> <br />
+                You have no Google Sheets API key defined. The chart will not display without this key.
+                Please enter your API key on the  <a href="/wp-admin/options-general.php?page=besan_options">Besan Block settings page</a>.
+              </p>
+            ) }
 
             <TextControl
               label='Google Sheets URL'
+              help='(The Google Sheet must be publically viewable.)'
               value={ data }
               onChange={ onChangeData }
             />

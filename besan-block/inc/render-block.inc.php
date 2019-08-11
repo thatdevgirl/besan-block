@@ -13,8 +13,7 @@ function besan_render( $attributes, $content ) {
 
 // [HELPER] Function to process relevant data from raw data.
 function _besan_process_data( $attributes ) {
-  // TODO: Make the user add this as an attribute so I'm not storing this key here.
-  $api_key = esc_attr( 'AIzaSyDIxAtGtNO5Z43U6pND2YXhJzuysOsLoyY' );
+  $api_key = get_option( 'bb_api_key' );
 
   // Get the data from the Google sheet.
   $raw_data = besan_get_sheet_data( $attributes, $api_key );
