@@ -4,19 +4,19 @@
  */
 
 function besan_get_svg_bar_vertical( $data, $title, $chart_color ) {
-  $consts = _besan_bv_set_consts( $data, $chart_color );
+  $consts = besan_bv_set_consts( $data, $chart_color );
   $svg = '';
 
-  _besan_bv_get_svg_start( $svg, $consts, $title );
-  _besan_bv_get_data( $svg, $data, $consts );
-  _besan_bv_get_svg_end( $svg );
+  besan_bv_get_svg_start( $svg, $consts, $title );
+  besan_bv_get_data( $svg, $data, $consts );
+  besan_bv_get_svg_end( $svg );
 
   return $svg;
 }
 
 
 // [HELPER] Function to set constant values for chart creation.
-function _besan_bv_set_consts( $data, $chart_color ) {
+function besan_bv_set_consts( $data, $chart_color ) {
   $consts = array(
     'height_total_px'  => 400,
     'height_chart_px'  => 360,
@@ -36,7 +36,7 @@ function _besan_bv_set_consts( $data, $chart_color ) {
 
 
 // [HELPER] Function to write out the start of the SVG object.
-function _besan_bv_get_svg_start( &$svg, $consts, $title ) {
+function besan_bv_get_svg_start( &$svg, $consts, $title ) {
   // Start the SVG structure.
   $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="' . $consts['height_total_px'] . '">';
 
@@ -54,7 +54,7 @@ function _besan_bv_get_svg_start( &$svg, $consts, $title ) {
 
 
 // [HELPER] Function to write out the bars of data.
-function _besan_bv_get_data( &$svg, $data, $consts ) {
+function besan_bv_get_data( &$svg, $data, $consts ) {
   // Figure out how many items are being charted.
   $number_of_items = sizeof( $data );
 
@@ -90,6 +90,6 @@ function _besan_bv_get_data( &$svg, $data, $consts ) {
 
 
 // [HELPER] Function to write out the end of the SVG object.
-function _besan_bv_get_svg_end( &$svg ) {
+function besan_bv_get_svg_end( &$svg ) {
   $svg .= '</svg>';
 }

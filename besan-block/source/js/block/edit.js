@@ -28,8 +28,8 @@ let besanEdit = ( props ) => {
           { /* Chart data input. */ }
           <PanelBody title='Data'>
 
-            { ! bbOptions.apiKey && (
-              <p className='bb-notice'>
+            { ! besanOptions.apiKey && (
+              <p className='besan-notice'>
                 <strong>Important!</strong> <br />
                 You have no Google Sheets API key defined. The chart will not display without this key.
                 Please enter your API key on the  <a href="/wp-admin/options-general.php?page=besan_options">Besan Block settings page</a>.
@@ -82,14 +82,14 @@ let besanEdit = ( props ) => {
         </InspectorControls>
       ) }
 
-      <div id="bb-chart-edit">
-        <div className={`bb-placeholder ${type}`}></div>
+      <div id="besan-chart-edit">
+        <div className={`besan-placeholder ${type}`}></div>
 
         <TextControl
           value={ caption }
           placeholder={ 'Write chart caption...' }
           onChange={ onChangeCaption }
-          className='bb-edit-caption'
+          className='besan-edit-caption'
         />
       </div>
     </Fragment>

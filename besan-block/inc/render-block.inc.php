@@ -6,14 +6,14 @@
 require_once( 'get-sheet-data.inc.php' );
 
 function besan_render( $attributes, $content ) {
-  $data = _besan_process_data( $attributes );
-  $svg = _besan_construct_svg( $attributes, $data );
-  return _besan_construct_block( $attributes, $svg );
+  $data = besan_process_data( $attributes );
+  $svg = besan_construct_svg( $attributes, $data );
+  return besan_construct_block( $attributes, $svg );
 }
 
 // [HELPER] Function to process relevant data from raw data.
-function _besan_process_data( $attributes ) {
-  $api_key = get_option( 'bb_api_key' );
+function besan_process_data( $attributes ) {
+  $api_key = get_option( 'besan_api_key' );
 
   // Get the data from the Google sheet.
   $raw_data = besan_get_sheet_data( $attributes, $api_key );
@@ -33,7 +33,7 @@ function _besan_process_data( $attributes ) {
 }
 
 // [HELPER] Function to construct the SVG based on the data.
-function _besan_construct_svg( $attributes, $data ) {
+function besan_construct_svg( $attributes, $data ) {
   switch( $attributes['type'] ) {
     case 'bar-vertical':
       require_once( 'get-svg-bar-vertical.inc.php' );
@@ -50,7 +50,7 @@ function _besan_construct_svg( $attributes, $data ) {
 }
 
 // [HELPER] Function to construct the HTML for the overall block.
-function _besan_construct_block( $attributes, $svg ) {
+function besan_construct_block( $attributes, $svg ) {
   $html = '<figure class="besan-chart">';
 
   // Add the SVG chart.

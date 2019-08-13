@@ -4,19 +4,19 @@
  */
 
 function besan_get_svg_bar_horizontal( $data, $title, $chart_color ) {
-  $consts = _besan_bh_set_consts( $data, $chart_color );
+  $consts = besan_bh_set_consts( $data, $chart_color );
   $svg = '';
 
-  _besan_bh_get_svg_start( $svg, $consts, $title );
-  _besan_bh_get_data( $svg, $data, $consts );
-  _besan_bh_get_svg_end( $svg );
+  besan_bh_get_svg_start( $svg, $consts, $title );
+  besan_bh_get_data( $svg, $data, $consts );
+  besan_bh_get_svg_end( $svg );
 
   return $svg;
 }
 
 
 // [HELPER] Function to set constant values for chart creation.
-function _besan_bh_set_consts( $data, $chart_color ) {
+function besan_bh_set_consts( $data, $chart_color ) {
   $consts = array(
     'height_bar_px'    => 50,
     'offset_chart_pct' => 20,
@@ -37,7 +37,7 @@ function _besan_bh_set_consts( $data, $chart_color ) {
 
 
 // [HELPER] Function to write out the start of the SVG object.
-function _besan_bh_get_svg_start( &$svg, $consts, $title ) {
+function besan_bh_get_svg_start( &$svg, $consts, $title ) {
   // Start the SVG structure.
   $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="' . $consts['height_total_px'] . '">';
 
@@ -55,7 +55,7 @@ function _besan_bh_get_svg_start( &$svg, $consts, $title ) {
 
 
 // [HELPER] Function to write out the bars of data.
-function _besan_bh_get_data( &$svg, $data, $consts ) {
+function besan_bh_get_data( &$svg, $data, $consts ) {
   // Initialize the offset of the first bar and its label.
   $offset = 0;
   $label_offset = 30;
@@ -85,6 +85,6 @@ function _besan_bh_get_data( &$svg, $data, $consts ) {
 
 
 // [HELPER] Function to write out the end of the SVG object.
-function _besan_bh_get_svg_end( &$svg ) {
+function besan_bh_get_svg_end( &$svg ) {
   $svg .= '</svg>';
 }

@@ -21,8 +21,8 @@
     <input type="hidden" name="hasUpdates" value="Y" />
 
     <p>
-      <label for="bb_api_key">Google API Key</label>
-      <input type="text" id="bb_api_key" name="bb_api_key" value="<?php echo esc_attr( get_option( 'bb_api_key' ) ); ?>" />
+      <label for="besan-api-key">Google API Key</label>
+      <input type="text" id="besan-api-key" name="besan_api_key" value="<?php echo esc_attr( get_option( 'besan_api_key' ) ); ?>" />
     </p>
 
     <p>
