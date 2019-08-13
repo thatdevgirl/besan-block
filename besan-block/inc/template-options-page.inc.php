@@ -1,3 +1,9 @@
+<?php
+/**
+ * Template for the Besan Block options page in the admin.
+ */
+?>
+
 <div class="wrap">
   <h1>Besan Block Plugin Settings</h1>
 
@@ -17,8 +23,12 @@
     </ol>
   </div>
 
-  <form method="post" action="" class="besan-form">
-    <input type="hidden" name="hasUpdates" value="Y" />
+  <form method="post" action="options.php" class="besan-form">
+    <?php
+      // Display hidden form fields.
+      settings_fields( $this->bb_group );
+      do_settings_sections( $this->bb_group );
+    ?>
 
     <p>
       <label for="besan-api-key">Google API Key</label>
@@ -26,7 +36,7 @@
     </p>
 
     <p>
-      <input type="submit" value="Save API key" />
+      <?php submit_button(); ?>
     </p>
   </form>
 </div>

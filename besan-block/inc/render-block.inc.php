@@ -7,6 +7,11 @@ require_once( 'get-sheet-data.inc.php' );
 
 function besan_render( $attributes, $content ) {
   $data = besan_process_data( $attributes );
+
+  // If no data exists, return nothing.
+  if ( !$data ) { return '<p>Sorry. Chart is unable to display.</p>'; }
+
+  // Otherwise, construct the chart!
   $svg = besan_construct_svg( $attributes, $data );
   return besan_construct_block( $attributes, $svg );
 }
@@ -18,6 +23,9 @@ function besan_process_data( $attributes ) {
   // Get the data from the Google sheet.
   $raw_data = besan_get_sheet_data( $attributes, $api_key );
   $data_body = json_decode( $raw_data['body'], true );
+
+  // If an error is returned with the data, do nothing.
+  if ( $data_body['error'] ) { return false; }
 
   // Find and count all of the unique values in the data.
   $data = array();

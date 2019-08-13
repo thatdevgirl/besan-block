@@ -1,47 +1,57 @@
 <?php
 /**
- * Add Javascript to the post editor.
+ * Add Javascript and CSS assets to the admin.
  */
 
-add_action( 'enqueue_block_editor_assets', 'besan_enqueue_editor_assets' );
+class BesanAssets {
 
-function besan_enqueue_editor_assets() {
-  $js = '../build/besan-block.min.js';
+  private $bb_js = '../build/besan-block.min.js';
+  private $bb_css = '../build/besan-block-editor.min.css';
 
-  // Editor JS file.
-  wp_enqueue_script(
-    'besan-editor-blocks-js',
-    plugins_url( $js, __FILE__ ),
-    array( 'wp-blocks', 'wp-editor', 'wp-components' ),
-    filemtime( plugin_dir_path( __FILE__ ) . $js )
-  );
+  public function __construct() {
+    add_action( 'enqueue_block_editor_assets', array( $this, 'besan_enqueue_editor_assets' ) );
+    add_action( 'admin_enqueue_scripts', array( $this, 'besan_enqueue_admin_assets' ) );
+  }
 
-  // Get the Google API key from WP options.
-  $options = get_option( 'besan_api_key' );
+  /**
+   * Add Javascript to the post editor.
+   */
+  public function besan_enqueue_editor_assets() {
+    wp_enqueue_script(
+      'besan-editor-blocks-js',
+      plugins_url( $this->bb_js, __FILE__ ),
+      array( 'wp-blocks', 'wp-editor', 'wp-components' ),
+      filemtime( plugin_dir_path( __FILE__ ) . $this->bb_js )
+    );
 
-  $jsData = array(
-    'apiKey' => $options['besan_api_key'],
-  );
+    // Get the Google API key from WP options.
+    $options = get_option( 'besan_api_key' );
 
-  // Pass the API option to the editor JS.
-  wp_localize_script( 'besan-editor-blocks-js', 'besanOptions', $jsData );
+    $jsData = array(
+      'apiKey' => esc_attr( $options ),
+    );
+
+    // Pass the API option to the editor JS.
+    wp_localize_script( 'besan-editor-blocks-js', 'besanOptions', $jsData );
+  }
+
+  /**
+   * Add CSS to the admin.
+   */
+  public function besan_enqueue_admin_assets() {
+    wp_enqueue_style(
+      'besan-editor-blocks-css',
+      plugins_url( $this->bb_css, __FILE__ ),
+      array(),
+      filemtime( plugin_dir_path( __FILE__ ) . $this->bb_css )
+    );
+  }
+
 }
 
-
 /**
- * Add CSS to the admin.
+ * Only call this class while in the WP admin.
  */
-
-add_action( 'admin_enqueue_scripts', 'besan_enqueue_admin_assets' );
-
-function besan_enqueue_admin_assets() {
-  $css = '../build/besan-block-editor.min.css';
-
-  // Editor CSS file.
-  wp_enqueue_style(
-    'besan-editor-blocks-css',
-    plugins_url( $css, __FILE__ ),
-    array(),
-    filemtime( plugin_dir_path( __FILE__ ) . $css )
-  );
+if ( is_admin() ) {
+  $besan_assets = new BesanAssets();
 }
