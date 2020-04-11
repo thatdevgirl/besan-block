@@ -25,14 +25,16 @@ function besan_process_data( $attributes ) {
   $data_body = json_decode( $raw_data['body'], true );
 
   // If an error is returned with the data, do nothing.
-  if ( $data_body['error'] ) { return false; }
+  if ( array_key_exists( 'error', $data_body ) ) { return false; }
 
   // Find and count all of the unique values in the data.
   $data = array();
   foreach ( $data_body['values'] as $d ) {
-    if ( $data[ $d[0] ] ) {
+    if ( array_key_exists( $d[0], $data ) ) {
+      // If the value already exists in my new data array, just add 1 to it.
       $data[ $d[0] ]++;
     } else {
+      // Otherwise, create a new item in my new data array for this new value.
       $data[ $d[0] ] = 1;
     }
   }

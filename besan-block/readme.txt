@@ -5,7 +5,7 @@ Tags: chart, data, graph
 Requires at least: 5.0
 Requires PHP: 7.0
 Tested up to: 5.2.2
-Stable tag: 1.0
+Stable tag: 1.1
 
 Add a responsive and accessible data chart block to posts and pages.
 
@@ -53,6 +53,10 @@ So far, only bar charts (horizontal and vertical). More charts (including pie ch
 3. Example screenshot of the chart block displaying a horizontal bar chart on the front-end.
 
 == Changelog ==
+
+= 1.1 =
+* Tested plugin with WordPress core 5.4.
+* Fixed PHP error on admin settings page.
 
 = 1.0 =
 * Initial release

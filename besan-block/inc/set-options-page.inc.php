@@ -21,7 +21,7 @@ class BesanOptionsPage {
       'Besan Block',                               // page title
       'Besan Block',                               // menu title
       'manage_options',                            // capability
-      $this->$bb_slug,                             // slug
+      $this->bb_slug,                              // slug
       array( $this, 'besan_set_options_callback' ) // callback
     );
   }
