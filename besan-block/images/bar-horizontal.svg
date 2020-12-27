@@ -1,9 +1,1 @@
-<svg height='300px' width='300px' fill="#bbbbbb" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve">
-  <title>Placeholder for horizontal bar chart</title>
-  <style type="text/css">
-    .st0{fill:none;stroke:#bbbbbb;stroke-width:2;stroke-miterlimit:10;}
-  </style>
-  <g>
-    <path d="M13,4v4H6V4H13z M21,16H6v4h15V16z M6,10v4h11v-4H6z M4,21V3H3v18H4z"></path>
-  </g>
-</svg>
+<svg height='300px' width='300px' fill="#bbbbbb" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve"><title>Placeholder for horizontal bar chart</title><style type="text/css">.st0{fill:none;stroke:#bbbbbb;stroke-width:2;stroke-miterlimit:10;}</style><g><path d="M13,4v4H6V4H13z M21,16H6v4h15V16z M6,10v4h11v-4H6z M4,21V3H3v18H4z"></path></g></svg>

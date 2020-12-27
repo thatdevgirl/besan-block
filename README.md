@@ -25,4 +25,4 @@ The block will calculate the number of unique values inside that column and crea
 * Vertical bar chart
 * Horizontal bar chart
 
-Other chart types (including pie charts!) are coming soon.
+Other chart types (including pie charts!) are coming... eventually.

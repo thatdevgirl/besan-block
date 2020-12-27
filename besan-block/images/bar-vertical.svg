@@ -1,4 +1,1 @@
-<svg height='300px' width='300px' fill="#bbbbbb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" x="0px" y="0px">
-  <title>Placeholder for horizontal bar chart</title>
-  <path d="M5,83.75H95V95H5V83.75Zm61.88-5.62h22.5V27.5H66.88V78.13Zm-56.25,0h22.5V5H10.63V78.13Zm28.13,0h22.5V50H38.75V78.13Z"></path>
-</svg>
+<svg height='300px' width='300px' fill="#bbbbbb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" x="0px" y="0px"><title>Placeholder for horizontal bar chart</title><path d="M5,83.75H95V95H5V83.75Zm61.88-5.62h22.5V27.5H66.88V78.13Zm-56.25,0h22.5V5H10.63V78.13Zm28.13,0h22.5V50H38.75V78.13Z"></path></svg>

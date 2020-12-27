@@ -14,7 +14,7 @@ const gulp       = require( 'gulp' ),
 
 // Array of JS files, in order by dependency.
 const jsFiles = [
-  'besan-block/source/js/block/index.js'
+  'besan-block/source/blocks/chart/index.js'
 ];
 
 // Task function to build the JS files.
