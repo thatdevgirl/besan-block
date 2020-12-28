@@ -1,90 +1,136 @@
 <?php
+
 /**
- * Helper function to create SVG for a horizontal bar chart.
+ * Helper class to create SVG for a horizontal bar chart.
  */
 
-function besan_get_svg_bar_horizontal( $data, $title, $chart_color ) {
-  $consts = besan_bh_set_consts( $data, $chart_color );
-  $svg = '';
+namespace ThreePM\BesanBlock;
 
-  besan_bh_get_svg_start( $svg, $consts, $title );
-  besan_bh_get_data( $svg, $data, $consts );
-  besan_bh_get_svg_end( $svg );
+class BarHorizontal {
 
-  return $svg;
-}
-
-
-// [HELPER] Function to set constant values for chart creation.
-function besan_bh_set_consts( $data, $chart_color ) {
-  $consts = array(
-    'height_bar_px'    => 50,
-    'offset_chart_pct' => 20,
-    'offset_bar_px'    => 10,
-    'max_value'        => max( $data ),
-    'base_color'       => '#000000',
-    'chart_color'      => $chart_color,
-    'font_size'        => '14'
-  );
-
-  // Calculate the height of the chart, based on the number of items.
-  $consts['height_chart_px'] = sizeof( $data ) * ( $consts['height_bar_px'] + $consts['offset_bar_px'] );
-  $consts['height_total_px'] = $consts['height_chart_px'] + 40;
-  $consts['label_x_axis_px'] =  $consts['height_chart_px'] + 20;
-
-  return $consts;
-}
+  private const BAR_HEIGHT = 40;
+  private const CHART_OFFSET = 20;
+  private const BAR_OFFSET = 15;
+  private const BASE_COLOR = '#000000';
+  private const FONT_SIZE = '14';
 
 
-// [HELPER] Function to write out the start of the SVG object.
-function besan_bh_get_svg_start( &$svg, $consts, $title ) {
-  // Start the SVG structure.
-  $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="' . $consts['height_total_px'] . '">';
+  /**
+   * get()
+   *
+   * Main function to get the SVG code.
+   *
+   * @param array $data
+   * @param string $title
+   * @param string $chart_color
+   * @return string
+   */
+  public function get( $data, $title, $chart_color ):string {
+    // Calculate the maximum value of the chart, based on the maximum value
+    // inside the data array. This will be used a couple of times in this class.
+    $this->max_value = max( $data );
 
-  // Set the title of this SVG.
-  $svg .= ( $title ) ? '<title>' . $title . '</title>' : '<title>Data chart</title>';
+    // Calculate the height of the chart, based on the number of items, and the
+    // total height of the SVG, which is the chart height plus a little padding.
+    $this->chart_height = sizeof( $data ) * ( self::BAR_HEIGHT + self::BAR_OFFSET );
+    $total_height = $this->chart_height + 40;
 
-  // Make the defining lines of the chart.
-  $svg .= '<g class="chart-container">';
-  $svg .= '<line role="presentation" x1="' . $consts['offset_chart_pct'] . '%" y1="0" x2="' . $consts['offset_chart_pct'] . '%" y2="' . $consts['height_chart_px'] . '" stroke="' . $consts['base_color'] . '" stroke-width="2" />';
-  $svg .= '<line role="presentation" x1="' . $consts['offset_chart_pct'] . '%" y1="' . $consts['height_chart_px'] . '" x2="100%" y2="' . $consts['height_chart_px'] . '" stroke="' . $consts['base_color'] . '" stroke-width="2" />';
-  $svg .= '<text role="presentation" x="96%" y="' . $consts['label_x_axis_px'] . '" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">' . $consts['max_value'] . '</text>';
-  $svg .= '<text role="presentation" x="' . $consts['offset_chart_pct'] . '%" y="' . $consts['label_x_axis_px'] . '" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">0</text>';
-  $svg .= '</g>';
-}
+    // Construct the SVG.
+    $svg = '';
+    $svg .= $this->get_title( $title );
+    $svg .= $this->get_axes();
+    $svg .= $this->get_data( $data, $chart_color );
 
-
-// [HELPER] Function to write out the bars of data.
-function besan_bh_get_data( &$svg, $data, $consts ) {
-  // Initialize the offset of the first bar and its label.
-  $offset = 0;
-  $label_offset = 30;
-
-  // Contain all the bars in a parent group.
-  $svg .= '<g role="list" aria-label="Bar graph">';
-
-  // Loop through each item and create the bar and its label.
-  foreach ( $data as $key => $d ) {
-    // Calculate the width of the bar, based on its value.
-    $bar_width = $d / $consts['max_value'] * 100;
-
-    // Write out the data.
-    $svg .= '<g role="listitem" aria-label="' . $key . ', ' . $d . '" tabindex="0">';
-    $svg .= '<rect role="presentation" x="' . $consts['offset_chart_pct'] . '%" y="' . $offset . '" width="' . $bar_width . '%" height="' . $consts['height_bar_px'] . '" fill="' . $consts['chart_color'] . '" />';
-    $svg .= '<text role="presentation" x="0" y="' . $label_offset . '" fill="' . $consts['base_color'] . '" font-size="' . $consts['font_size'] . '">' . $key . '</text>';
-    $svg .= '</g>';
-
-    // Calculate the offset for the next bar.
-    $offset += $consts['offset_bar_px'] + $consts['height_bar_px'];
-    $label_offset = $offset + 30;
+    return <<<SVG_CODE
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="$total_height">
+        $svg
+      </svg>
+SVG_CODE;
   }
 
-  // End the parent group container.
-  $svg .= '</g>';
-}
+
+  /**
+   * get_title()
+   *
+   * Get the SVG title code.
+   *
+   * @param string $title;
+   * @return string
+   */
+  private function get_title( $title = 'Data chart' ): string {
+    return '<title>' . $title . '</title>';
+  }
 
 
-// [HELPER] Function to write out the end of the SVG object.
-function besan_bh_get_svg_end( &$svg ) {
-  $svg .= '</svg>';
+  /**
+   * get_axes()
+   *
+   * Get the SVG code for the chart container and axes.
+   *
+   * @return string
+   */
+  private function get_axes(): string {
+    // Save constants used in the bar code as local variables so we can use
+    // them in the HEREDOC, because apparently it can't deal with constants.
+    $base_color     = self::BASE_COLOR;
+    $chart_offset   = self::CHART_OFFSET;
+    $font_size      = self::FONT_SIZE;
+    $label_position = $this->chart_height + 20;
+
+    return <<<SVG_CODE
+      <g class="chart-container">
+        <line role="presentation" x1="$chart_offset%" y1="0" x2="$chart_offset%" y2="$this->chart_height" stroke="$base_color" stroke-width="2" />
+        <line role="presentation" x1="$chart_offset%" y1="$this->chart_height" x2="100%" y2="$this->chart_height" stroke="$base_color" stroke-width="2" />
+        <text role="presentation" x="96%" y="$label_position" fill="$base_color" font-size="$font_size">$this->max_value</text>
+        <text role="presentation" x="$chart_offset%" y="$label_position" fill="$base_color" font-size="$font_size">0</text>
+      </g>
+SVG_CODE;
+  }
+
+
+  /**
+   * get_data()
+   *
+   * Get the SVG code for the chart's data bars.
+   *
+   * @param array $data
+   * @param string $chart_color
+   * @return string
+   */
+  private function get_data( $data, $chart_color ): string {
+    // Save constants used in the bar code as local variables so we can use
+    // them in the HEREDOC, because apparently it can't deal with constants.
+    $bar_height   = self::BAR_HEIGHT;
+    $base_color   = self::BASE_COLOR;
+    $chart_offset = self::CHART_OFFSET;
+    $font_size    = self::FONT_SIZE;
+
+    // Initialize the offset of the first bar and its label.
+    $offset = 0;
+    $label_offset = 30;
+
+    $svg = '';
+
+    // Loop through each item and create the bar and its label.
+    foreach ( $data as $key => $d ) {
+      // Calculate the width of the bar, based on its value.
+      $bar_width = $d / $this->max_value * 100;
+
+      // Write out the data.
+      $svg .= <<<SVG_CODE
+        <g role="listitem" aria-label="$key, $d" tabindex="0">
+          <rect role="presentation" x="$chart_offset%" y="$offset" width="$bar_width%" height="$bar_height" fill="$chart_color" />
+          <text role="presentation" x="0" y="$label_offset" fill="$base_color" font-size="$font_size">$key</text>
+        </g>
+SVG_CODE;
+
+      // Calculate the offset for the next bar.
+      $offset += self::BAR_OFFSET + self::BAR_HEIGHT;
+      $label_offset = $offset + 30;
+    }
+
+    // Return the bars inside a parent group container.
+    return '<g role="list" aria-label="Bar graph">' . $svg . '</g>';
+  }
+
 }
