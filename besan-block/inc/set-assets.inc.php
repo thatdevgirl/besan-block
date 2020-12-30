@@ -1,57 +1,73 @@
 <?php
+
 /**
  * Add Javascript and CSS assets to the admin.
  */
 
-class BesanAssets {
+namespace ThreePM\BesanBlock;
 
-  private $bb_js = '../build/besan-block.min.js';
-  private $bb_css = '../build/besan-block-editor.min.css';
+class Assets {
 
-  public function __construct() {
-    add_action( 'enqueue_block_editor_assets', array( $this, 'besan_enqueue_editor_assets' ) );
-    add_action( 'admin_enqueue_scripts', array( $this, 'besan_enqueue_admin_assets' ) );
-  }
+  private const JS_PATH = '../build/besan-block.min.js';
+  private const CSS_PATH = '../build/besan-block-editor.min.css';
+
 
   /**
-   * Add Javascript to the post editor.
+   * __construct()
    */
-  public function besan_enqueue_editor_assets() {
+  public function __construct() {
+    add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_to_editor' ] );
+    add_action( 'admin_enqueue_scripts', [ $this, 'besan_enqueue_admin_assets' ] );
+  }
+
+
+  /**
+   * enqueue_to_editor()
+   *
+   * Add Javascript assets to the post editor.
+   *
+   * @return void
+   */
+  public function enqueue_to_editor(): void {
+    $handle = 'besan_editor';
+
     wp_enqueue_script(
-      'besan-editor-blocks-js',
-      plugins_url( $this->bb_js, __FILE__ ),
-      array( 'wp-blocks', 'wp-editor', 'wp-components' ),
-      filemtime( plugin_dir_path( __FILE__ ) . $this->bb_js )
+      $handle,
+      plugins_url( self::JS_PATH, __FILE__ ),
+      [ 'wp-blocks', 'wp-editor', 'wp-components' ],
+      filemtime( plugin_dir_path( __FILE__ ) . self::JS_PATH )
     );
 
     // Get the Google API key from WP options.
     $options = get_option( 'besan_api_key' );
 
-    $jsData = array(
-      'apiKey' => esc_attr( $options ),
-    );
-
     // Pass the API option to the editor JS.
-    wp_localize_script( 'besan-editor-blocks-js', 'besanOptions', $jsData );
+    wp_localize_script( $handle, 'besanOptions', [ 'apiKey' => esc_attr( $options ) ] );
   }
 
+
   /**
-   * Add CSS to the admin.
+   * enqueue_to_admin()
+   *
+   * Add CSS assets to the admin.
+   *
+   * @return void
    */
-  public function besan_enqueue_admin_assets() {
+  public function besan_enqueue_admin_assets(): void {
     wp_enqueue_style(
       'besan-editor-blocks-css',
-      plugins_url( $this->bb_css, __FILE__ ),
-      array(),
-      filemtime( plugin_dir_path( __FILE__ ) . $this->bb_css )
+      plugins_url( self::CSS_PATH, __FILE__ ),
+      [],
+      filemtime( plugin_dir_path( __FILE__ ) . self::CSS_PATH )
     );
   }
 
 }
 
+
 /**
  * Only call this class while in the WP admin.
  */
 if ( is_admin() ) {
-  $besan_assets = new BesanAssets();
+  new Assets();
 }

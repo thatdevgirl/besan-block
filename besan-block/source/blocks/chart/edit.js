@@ -2,13 +2,14 @@
  * EDIT: Chart block
  */
 
-const { ColorPicker, PanelBody, SelectControl, TextControl } = wp.components;
-const { InspectorControls } = wp.editor;
+const { InspectorControls } = wp.blockEditor;
+const { ColorPicker, Panel, PanelBody, SelectControl, TextControl } = wp.components;
 const { Fragment } = wp.element;
 
-let besanEdit = ( props ) => {
+const besanEdit = ( props ) => {
+
   // Get the values needed from props.
-  const { isSelected, setAttributes } = props;
+  const { setAttributes } = props;
   const { data, column, type, title, caption, color } = props.attributes;
 
   // Declare change event handlers.
@@ -22,43 +23,53 @@ let besanEdit = ( props ) => {
   // Return the edit UI.
   return (
     <Fragment>
-      { isSelected && (
-        <InspectorControls>
 
-          { /* Chart data input. */ }
-          <PanelBody title='Data'>
+      <InspectorControls>
 
+        { /* Chart data. */ }
+        <Panel>
+          <PanelBody title='Data source'>
+
+            <p className='besan-editor-note info'>
+              Enter your Google Sheet URL and the letter of the column to be
+              included in this chart. The Google Sheet <em>must</em> be
+              publicly viewable.
+            </p>
+
+            { /* Warning to content teditors to add an API key if one has */}
+            { /* already been added to Settings. */ }
             { ! besanOptions.apiKey && (
-              <p className='besan-notice'>
+              <p className='besan-editor-note warning'>
                 <strong>Important!</strong> <br />
-                You have no Google Sheets API key defined. The chart will not display without this key.
-                Please enter your API key on the  <a href="/wp-admin/options-general.php?page=besan_options">Besan Block settings page</a>.
+                You have no Google Sheets API key defined. The chart will not
+                display without this key. Please enter your API key on the
+                <a href="/wp-admin/options-general.php?page=besan_options">Besan
+                Block settings page</a>.
               </p>
             ) }
 
+            { /* Google Sheets URL. */ }
             <TextControl
               label='Google Sheets URL'
-              help='(The Google Sheet must be publically viewable.)'
               value={ data }
               onChange={ onChangeData }
             />
 
+            { /* Spreadsheet column. */ }
             <TextControl
-              label='Column to chart'
+              label='Column'
               value={ column }
               onChange={ onChangeColumn }
             />
 
-            <TextControl
-              label='Chart title'
-              help='(A short description, used to make the chart more accessible for screen readers.)'
-              value={ title }
-              onChange={ onChangeTitle }
-            />
           </PanelBody>
+        </Panel>
 
-          { /* Overall style options. */ }
+        { /* Overall style options. */ }
+        <Panel>
           <PanelBody title='Display options'>
+
+            { /* Chart type. */ }
             <SelectControl
               label='Chart type'
               value={ type }
@@ -69,6 +80,7 @@ let besanEdit = ( props ) => {
               onChange={ onChangeType }
             />
 
+            { /* Chart color. */ }
             <label>
               Chart color
               <ColorPicker
@@ -77,10 +89,30 @@ let besanEdit = ( props ) => {
                 disableAlpha
               />
             </label>
-          </PanelBody>
 
-        </InspectorControls>
-      ) }
+          </PanelBody>
+        </Panel>
+
+        <Panel>
+          <PanelBody title='Accessibility'>
+
+            <p className='besan-editor-note info'>
+              Type a short description of the chart. This should be different
+              from the caption. The title will not be visible to sighted
+              users, but will be used as the internal title of the chart to
+              make it more accessible for screen reader users.
+            </p>
+
+            <TextControl
+              label='Chart title'
+              value={ title }
+              onChange={ onChangeTitle }
+            />
+
+          </PanelBody>
+        </Panel>
+
+      </InspectorControls>
 
       <div id="besan-chart-edit">
         <div className={`besan-placeholder ${type}`}></div>
@@ -92,6 +124,7 @@ let besanEdit = ( props ) => {
           className='besan-edit-caption'
         />
       </div>
+
     </Fragment>
   );
 };

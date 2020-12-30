@@ -15,6 +15,7 @@ $instructions-border:  darken( $gray, 20% );
 $form-submit-bg:       darken( $pink, 50% );
 $form-submit-bg-hover: darken( $pink, 60% );
 
-$notice-bg:            $pink;
-$notice-color:         $black;
-$notice-link:          #5a4146;
+$note-color:           $black;
+$note-link:            #5a4146;
+$note-warning-bg:      $pink;
+$note-info-bg:         $gray;

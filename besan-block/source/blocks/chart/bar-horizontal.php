@@ -4,7 +4,7 @@
  * Helper class to create SVG for a horizontal bar chart.
  */
 
-namespace ThreePM\BesanBlock;
+namespace ThreePM\BesanBlock\Chart;
 
 class BarHorizontal {
 
@@ -25,7 +25,7 @@ class BarHorizontal {
    * @param string $chart_color
    * @return string
    */
-  public function get( $data, $title, $chart_color ):string {
+  public function get( $data, $title, $chart_color ): string {
     // Calculate the maximum value of the chart, based on the maximum value
     // inside the data array. This will be used a couple of times in this class.
     $this->max_value = max( $data );

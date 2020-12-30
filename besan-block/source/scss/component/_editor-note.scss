@@ -1,0 +1,29 @@
+/**
+ * Notes in the block editor.
+ */
+
+.besan-editor-note {
+
+  color: $note-color;
+  margin-bottom: 2rem;
+  padding: 1rem;
+
+  a {
+    color: $note-link;
+
+    &:hover, &:focus {
+      color: darken( $note-link, 20% );
+    }
+  }
+
+  // Information note.
+  &.info {
+    background-color: $note-info-bg;
+  }
+
+  // Warning note.
+  &.warning {
+    background-color: $note-warning-bg;
+  }
+
+}

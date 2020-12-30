@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Register the Chart block.
  */
 
-namespace ThreePM\BesanBlock;
+namespace ThreePM\BesanBlock\Chart;
 
 class Register {
 
@@ -13,8 +14,8 @@ class Register {
   public function __construct() {
     // Require other PHP files.
     require_once( 'sheet-data.php' );
-    require_once( 'svg-bar-horizontal.php' );
-    require_once( 'svg-bar-vertical.php' );
+    require_once( 'bar-horizontal.php' );
+    require_once( 'bar-vertical.php' );
 
     // Register the block.
     add_action( 'init', [ $this, 'register' ] );

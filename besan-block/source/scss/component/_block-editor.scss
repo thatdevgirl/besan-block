@@ -1,10 +1,10 @@
 /**
- * In-editor block styles.
+ * Block editor styles.
  */
 
 #besan-chart-edit {
 
-  // Chart placeholder.
+  // Chart placeholder image.
   .besan-placeholder {
     background-color: $placeholder-bg;
     background-position: center center;
@@ -28,12 +28,6 @@
     &.pie {
       background-image: url( '../images/pie.svg' );
     }
-  }
-
-  // Title field.
-  .besan-edit-title input {
-    border: 0;
-    font-size: 1.5rem;
   }
 
   // Caption field.

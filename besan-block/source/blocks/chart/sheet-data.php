@@ -4,7 +4,7 @@
  * Helper class to retrieve Google sheet data via API.
  */
 
-namespace ThreePM\BesanBlock;
+namespace ThreePM\BesanBlock\Chart;
 
 use WP_Http;
 
@@ -67,8 +67,7 @@ class SheetData {
    * @param array $data_body
    * @return array||boolean
    */
-  private function process_data( $data_body )
-   {
+  private function process_data( $data_body ) {
     // If an error is returned with the data, do nothing.
     if ( array_key_exists( 'error', $data_body ) ) { return false; }
 

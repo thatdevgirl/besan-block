@@ -4,7 +4,7 @@
  * Helper class to create SVG for a vertical bar chart.
  */
 
-namespace ThreePM\BesanBlock;
+namespace ThreePM\BesanBlock\Chart;
 
 class BarVertical {
 
@@ -27,7 +27,7 @@ class BarVertical {
    * @param string $chart_color
    * @return string
    */
-  public function get( $data, $title, $chart_color ) {
+  public function get( $data, $title, $chart_color ): string {
     // Calculate the maximum value of the chart, based on the maximum value
     // inside the data array. This will be used a couple of times in this class.
     $this->max_value = max( $data );
@@ -99,7 +99,7 @@ SVG_CODE;
    * @param string $chart_color
    * @return string
    */
-  function get_data( $data, $chart_color ):string {
+  private function get_data( $data, $chart_color ): string {
     // Save constants used in the bar code as local variables so we can use
     // them in the HEREDOC, because apparently it can't deal with constants.
     $bar_offset     = self::BAR_OFFSET;
