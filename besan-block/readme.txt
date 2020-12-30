@@ -57,6 +57,7 @@ So far, only bar charts (horizontal and vertical). More charts (including pie ch
 = 1.2 =
 * Tested plugin with WordPress core 5.6.
 * Rearranging some things under the hood (i.e. code refactoring).
+* UX updates to the block's inspector panel options.
 
 = 1.1 =
 * Tested plugin with WordPress core 5.4.

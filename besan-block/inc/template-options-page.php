@@ -26,8 +26,8 @@
   <form method="post" action="options.php" class="besan-form">
     <?php
       // Display hidden form fields.
-      settings_fields( $this->bb_group );
-      do_settings_sections( $this->bb_group );
+      settings_fields( self::GROUP );
+      do_settings_sections( self::GROUP );
     ?>
 
     <p>

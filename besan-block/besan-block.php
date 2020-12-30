@@ -15,9 +15,8 @@ if ( !defined( 'ABSPATH' ) ) {
   exit;
 }
 
-require_once( 'inc/set-plugin-row-meta.inc.php' );
-require_once( 'inc/set-plugin-action-links.inc.php' );
-require_once( 'inc/set-options-page.inc.php' );
-require_once( 'inc/set-assets.inc.php' );
+require_once( 'inc/assets.php' );
+require_once( 'inc/options-page.php' );
+require_once( 'inc/plugins-page.php' );
 
 require_once( 'source/blocks/chart/register.php' );
