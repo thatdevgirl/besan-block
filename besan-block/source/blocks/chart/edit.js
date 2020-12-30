@@ -2,11 +2,13 @@
  * EDIT: Chart block
  */
 
-const { InspectorControls } = wp.blockEditor;
-const { ColorPicker, Panel, PanelBody, SelectControl, TextControl } = wp.components;
-const { Fragment } = wp.element;
+import besanIcons from './icons.js';
 
 const besanEdit = ( props ) => {
+
+  const { InspectorControls } = wp.blockEditor;
+  const { ColorPicker, Panel, PanelBody, SelectControl, TextControl } = wp.components;
+  const { Fragment } = wp.element;
 
   // Get the values needed from props.
   const { setAttributes } = props;
@@ -115,14 +117,28 @@ const besanEdit = ( props ) => {
       </InspectorControls>
 
       <div id="besan-chart-edit">
-        <div className={`besan-placeholder ${type}`}></div>
 
+        { /* Show a placeholder appropriate to the selected chart type. */ }
+        { type == 'bar-vertical' && (
+          <div className='besan-placeholder' style={{ fill: color }}>
+            { besanIcons.barVertical }
+          </div>
+        ) }
+
+        { type == 'bar-horizontal' && (
+          <div className='besan-placeholder' style={{ fill: color }}>
+            { besanIcons.barHorizontal }
+          </div>
+        ) }
+
+        { /* Chart caption. */ }
         <TextControl
           value={ caption }
           placeholder={ 'Write chart caption...' }
           onChange={ onChangeCaption }
           className='besan-edit-caption'
         />
+
       </div>
 
     </Fragment>
