@@ -50,7 +50,7 @@ class PluginsPage {
 
     if ( strpos( $plugin_file_name, 'besan-block' ) !== false ) {
       $additional_links = [
-        '<a href="' . esc_url( 'https://www.paypal.me/thatdevgirl' ) . '">Donate</a>',
+        '<a href="' . esc_url( 'https://www.buymeacoffee.com/thatdevgirl' ) . '">Donate</a>',
       ];
     }
 
