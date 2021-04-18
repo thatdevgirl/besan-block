@@ -26,3 +26,9 @@ The block will calculate the number of unique values inside that column and crea
 * Horizontal bar chart
 
 Other chart types (including pie charts!) are coming... eventually.
+
+## Resources
+
+* [https://entrepreneurs.maqtoob.com/44-new-cool-websites-and-apps-to-learn-something-new-7b82beab1139#.vp8fjhj02](https://entrepreneurs.maqtoob.com/44-new-cool-websites-and-apps-to-learn-something-new-7b82beab1139#.vp8fjhj02)
+* [https://github.com/d3/d3-3.x-api-reference/blob/master/Pie-Layout.md](https://github.com/d3/d3-3.x-api-reference/blob/master/Pie-Layout.md)
+* [http://alignedleft.com/tutorials/d3/drawing-svgs](http://alignedleft.com/tutorials/d3/drawing-svgs)
