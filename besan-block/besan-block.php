@@ -5,7 +5,7 @@
  * Description: This WordPress plugin adds a charting block to the post editor.
  * Version: 1.2.1
  * Author: Joni Halabi
- * Author URI: https://thatdevgirl.com
+ * Author URI: https://jhalabi.com
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
