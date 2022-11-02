@@ -4,7 +4,7 @@ Donate Link: https://www.buymeacoffee.com/thatdevgirl
 Tags: chart, data, graph
 Requires at least: 5.0
 Requires PHP: 7.0
-Tested up to: 6.0
+Tested up to: 6.1
 Stable tag: 1.2
 
 Add a responsive and accessible data chart block to posts and pages.
@@ -14,7 +14,6 @@ Add a responsive and accessible data chart block to posts and pages.
 This WordPress plugin adds a responsive and accessible data chart block to the post editor. The chart feeds off of data from a publicly viewable Google sheet.
 
 == Installation ==
-
 
 1. In the WordPress admin, install and enable the "Besan Block" plugin.
 

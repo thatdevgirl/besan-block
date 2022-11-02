@@ -6,9 +6,8 @@
 const gulp       = require( 'gulp' ),
       browserify = require( 'browserify' ),
       buffer     = require( 'vinyl-buffer' ),
-      cleanCss   = require( 'gulp-clean-css' ),
       rename     = require( 'gulp-rename' ),
-      sass       = require( 'gulp-sass' ),
+      sass       = require( 'gulp-dart-sass' ),
       source     = require( 'vinyl-source-stream' ),
       uglify     = require( 'gulp-uglify' );
 
@@ -31,8 +30,7 @@ function buildJs() {
 // Task function to build the CSS files.
 function buildEditorCss() {
   return gulp.src( 'besan-block/source/scss/editor.scss' )
-    .pipe( sass().on( 'error', sass.logError ) )
-    .pipe( cleanCss() )
+    .pipe( sass( { outputStyle: 'compressed' } ) )
     .pipe( rename( {
       basename: 'besan-block-editor',
       suffix: '.min'
