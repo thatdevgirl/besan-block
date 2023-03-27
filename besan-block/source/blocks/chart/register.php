@@ -30,18 +30,7 @@ class Register {
    * @return void
    */
   public function register(): void {
-    register_block_type( 'tdg/chart', [
-      // Set up block attributes.
-      'attributes' => [
-        'data'    => [ 'type' => 'string', 'default' => '' ],
-        'column'  => [ 'type' => 'string', 'default' => 'A' ],
-        'type'    => [ 'type' => 'string', 'default' => 'bar-vertical' ],
-        'title'   => [ 'type' => 'string', 'default' => '' ],
-        'caption' => [ 'type' => 'string', 'default' => '' ],
-        'color'   => [ 'type' => 'string', 'default' => '#000000' ]
-      ],
-
-      // Declare render callback function.
+    register_block_type( __DIR__, [
       'render_callback' => [ $this, 'render' ]
     ] );
   }

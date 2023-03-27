@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+
+  "name": "tdg/chart",
+  "title": "Chart",
+  "category": "widgets",
+  "description": "A block to create a chart from data in a Google sheet.",
+  "keywords": [ "besan block", "graph", "data" ],
+
+  "attributes": {
+    "data": {
+      "type": "string",
+      "default": ""
+    },
+    "column": {
+      "type": "string",
+      "default": "A"
+    },
+    "type": {
+      "type": "string",
+      "default": "bar-vertical"
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "caption": {
+      "type": "string",
+      "default": ""
+    },
+    "color": {
+      "type": "string",
+      "default": "#000000"
+    }
+  },
+
+  "example": {}
+}

@@ -6,13 +6,13 @@ import besanIcons from './icons.js';
 
 const besanEdit = ( props ) => {
 
-  const { InspectorControls } = wp.blockEditor;
+  const { InspectorControls, useBlockProps } = wp.blockEditor;
   const { ColorPicker, Panel, PanelBody, SelectControl, TextControl } = wp.components;
-  const { Fragment } = wp.element;
 
   // Get the values needed from props.
   const { setAttributes } = props;
   const { data, column, type, title, caption, color } = props.attributes;
+  const blockProps = useBlockProps();
 
   // Declare change event handlers.
   const onChangeData    = ( value ) => { setAttributes( { data: value } ) };
@@ -24,7 +24,7 @@ const besanEdit = ( props ) => {
 
   // Return the edit UI.
   return (
-    <Fragment>
+    <div { ...blockProps }>
 
       <InspectorControls>
 
@@ -141,7 +141,7 @@ const besanEdit = ( props ) => {
 
       </div>
 
-    </Fragment>
+    </div>
   );
 };
 

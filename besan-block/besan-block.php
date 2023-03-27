@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Besan Block
  * Description: This WordPress plugin adds a charting block to the post editor.
- * Version: 1.2.1
+ * Version: 1.3
  * Author: Joni Halabi
  * Author URI: https://jhalabi.com
  * License: GPL2
