@@ -44,8 +44,8 @@ const besanEdit = ( props ) => {
               <p className='besan-editor-note warning'>
                 <strong>Important!</strong> <br />
                 You have no Google Sheets API key defined. The chart will not
-                display without this key. Please enter your API key on the
-                <a href="/wp-admin/options-general.php?page=besan_options">Besan
+                display without this key. Please enter your API key on 
+                the <a href="/wp-admin/options-general.php?page=besan_options">Besan
                 Block settings page</a>.
               </p>
             ) }
