@@ -2,20 +2,25 @@
  * Colors: Editor.
  */
 
+
+// Base colors.
 $black: #000;
 $white: #fff;
 $gray:  #e5e5e5;
 $pink:  #ffd4d9;
+$dark-pink: #5a4146;
 
 
+// Component colors.
 $placeholder-bg:       #eee;
 
 $instructions-border:  darken( $gray, 20% );
+$instructions-bg:      $white;
 
 $form-submit-bg:       darken( $pink, 50% );
 $form-submit-bg-hover: darken( $pink, 60% );
 
 $note-color:           $black;
-$note-link:            #5a4146;
+$note-link:            $dark-pink;
 $note-warning-bg:      $pink;
 $note-info-bg:         $gray;

@@ -1,11 +1,11 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
 
   "name": "tdg/chart",
   "title": "Chart",
   "category": "widgets",
-  "description": "A block to create a chart from data in a Google sheet.",
+  "description": "Display a chart using data in a Google sheet.",
   "keywords": [ "besan block", "graph", "data" ],
 
   "attributes": {

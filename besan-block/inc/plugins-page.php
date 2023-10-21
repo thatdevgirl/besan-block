@@ -25,6 +25,7 @@ class PluginsPage {
    *
    * @param array $links
    * @param string $plugin_file_name
+   * 
    * @return array
    */
   public function add_action_links( $links, $plugin_file_name ): array {
@@ -43,6 +44,7 @@ class PluginsPage {
    *
    * @param array $links
    * @param string $plugin_file_name
+   * 
    * @return array
    */
   public function add_row_meta( $links, $plugin_file_name ) {

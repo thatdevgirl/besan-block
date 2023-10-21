@@ -3,18 +3,21 @@
  */
 
 .besan-form {
-  p {
-    margin: 2rem 0;
+
+  fieldset {
+    align-items: baseline;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: max-content 1fr;
   }
 
   label {
     display: inline-block;
     font-weight: bold;
-    width: 10rem;
   }
 
   input[type=text] {
     padding: 0.5rem;
-    width: 30rem;
   }
+
 }

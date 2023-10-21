@@ -1,12 +1,14 @@
 <?php
 
 /**
- * Helper class to create SVG for a horizontal bar chart.
+ * BarHorizontal
+ * 
+ * Create the SVG for a **horizontal** bar chart.
  */
 
 namespace ThreePM\BesanBlock\Chart;
 
-class BarHorizontal {
+class BarHorizontal extends Chart {
 
   private const BAR_HEIGHT = 40;
   private const CHART_OFFSET = 20;
@@ -35,30 +37,20 @@ class BarHorizontal {
     $this->chart_height = sizeof( $data ) * ( self::BAR_HEIGHT + self::BAR_OFFSET );
     $total_height = $this->chart_height + 40;
 
+    // Get the SVG title ID.
+    $title_id = $this->get_title_id();
+
     // Construct the SVG.
     $svg = '';
-    $svg .= $this->get_title( $title );
+    $svg .= $this->get_title( $title, $title_id );
     $svg .= $this->get_axes();
     $svg .= $this->get_data( $data, $chart_color );
 
     return <<<SVG_CODE
-      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="$total_height">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="$total_height" aria-labelledby="$title_id">
         $svg
       </svg>
 SVG_CODE;
-  }
-
-
-  /**
-   * get_title()
-   *
-   * Get the SVG title code.
-   *
-   * @param string $title;
-   * @return string
-   */
-  private function get_title( $title = 'Data chart' ): string {
-    return '<title>' . $title . '</title>';
   }
 
 
@@ -116,9 +108,12 @@ SVG_CODE;
       // Calculate the width of the bar, based on its value.
       $bar_width = $d / $this->max_value * 100;
 
+      // Get the ARIA label for this item.
+      $aria_label = $this->get_single_aria_label( $d, $key );
+
       // Write out the data.
       $svg .= <<<SVG_CODE
-        <g role="listitem" aria-label="$key, $d" tabindex="0">
+        <g role="listitem" aria-label="$aria_label" tabindex="0">
           <rect role="presentation" x="$chart_offset%" y="$offset" width="$bar_width%" height="$bar_height" fill="$chart_color" />
           <text role="presentation" x="0" y="$label_offset" fill="$base_color" font-size="$font_size">$key</text>
         </g>
@@ -130,7 +125,7 @@ SVG_CODE;
     }
 
     // Return the bars inside a parent group container.
-    return '<g role="list" aria-label="Bar graph">' . $svg . '</g>';
+    return '<g role="list" aria-label="Chart data">' . $svg . '</g>';
   }
 
 }

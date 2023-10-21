@@ -16,11 +16,19 @@ class SheetData {
    * Get the data from the Google sheet based on the passed-in attributes.
    *
    * @param array $attributes
-   * @return array||boolean
+   * 
+   * @return array|bool
    */
-  public function get( $attributes ) {
+  public function get( array $attributes ): array|bool {
     $data_body = $this->get_data( $attributes );
     return $this->process_data( $data_body );
+  }
+
+
+  public function get_title(): string {
+    return '';
+    print_r($this->title['body']->values);
+    return $this->title['body']['values'];
   }
 
 
@@ -31,9 +39,10 @@ class SheetData {
    * relevant data based on the passed-in attributes.
    *
    * @param array $attributes
+   * 
    * @return array
    */
-  private function get_data( $attributes ): array {
+  private function get_data( array $attributes ): array {
     // Get the API key from WP options.
     $api_key = get_option( 'besan_api_key' );
 
@@ -49,11 +58,14 @@ class SheetData {
 
     // Make the call to get the data from Google.
     $get_data = new WP_Http();
-    $url = 'https://sheets.googleapis.com/v4/spreadsheets/'. $sheet_id . '/values/' . $range . '/?&key=' . $api_key;
+    $data_url = 'https://sheets.googleapis.com/v4/spreadsheets/'. $sheet_id . '/values/' . $range . '/?&key=' . $api_key;
+    $raw_data = $get_data->get( $data_url );
+    
+    // Get and save the title to the class, for later.
+    $title_url = 'https://sheets.googleapis.com/v4/spreadsheets/'. $sheet_id . '/values/' . $column . '1/?&key=' . $api_key;
+    $this->title = $get_data->get( $title_url );
 
-    // Get the data from the spreadhseet. It is a JSON string, so convert that
-    // to an array and return that.
-    $raw_data = $get_data->get( $url );
+    // Return the raw data. It is a JSON string, so convert it to an array first.
     return json_decode( $raw_data['body'], true );
   }
 
@@ -65,9 +77,10 @@ class SheetData {
    * unique values.
    *
    * @param array $data_body
-   * @return array||boolean
+   * 
+   * @return array|bool
    */
-  private function process_data( $data_body ) {
+  private function process_data( array $data_body ): array|bool {
     // If an error is returned with the data, do nothing.
     if ( array_key_exists( 'error', $data_body ) ) { return false; }
 

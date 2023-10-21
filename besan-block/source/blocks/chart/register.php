@@ -12,11 +12,6 @@ class Register {
    * __construct()
    */
   public function __construct() {
-    // Require other PHP files.
-    require_once( 'sheet-data.php' );
-    require_once( 'bar-horizontal.php' );
-    require_once( 'bar-vertical.php' );
-
     // Register the block.
     add_action( 'init', [ $this, 'register' ] );
   }
@@ -42,6 +37,7 @@ class Register {
    * Render this block.
    *
    * @param array $attributes
+   * 
    * @return string
    */
   public function render( $attributes ): string {
@@ -52,7 +48,7 @@ class Register {
     if ( !$data ) { return '<p>Sorry. Chart is unable to display.</p>'; }
 
     // Otherwise, construct the chart!
-    $svg = $this->render_svg( $attributes, $data );
+    $svg = $this->render_svg( $attributes, $data, $SheetData->get_title() );
     return $this->render_block( $attributes, $svg );
   }
 
@@ -64,21 +60,27 @@ class Register {
    *
    * @param array $attributes
    * @param array $data
+   * @param string $column_title
+   * 
    * @return string
    */
-  private function render_svg( $attributes, $data ) {
+  private function render_svg( $attributes, $data, $column_title ) {
+    // Extract attributes, for reading ease.
+    $title = $attributes['title'] ? $attributes['title'] : $column_title;
+    $color = $attributes['color'] ?? '#000000';
+
     switch( $attributes['type'] ) {
       case 'bar-vertical':
         $BAR_VERTICAL = new BarVertical();
-        return $BAR_VERTICAL->get( $data, $attributes['title'], $attributes['color'] );
+        return $BAR_VERTICAL->get( $data, $title, $color );
 
       case 'bar-horizontal':
         $BAR_HORIZONTAL = new BarHorizontal();
-        return $BAR_HORIZONTAL->get( $data, $attributes['title'], $attributes['color'] );
+        return $BAR_HORIZONTAL->get( $data, $title, $color );
 
       default:
         $BAR_VERTICAL = new BarVertical();
-        return $BAR_VERTICAL->get( $data, $attributes['title'], $attributes['color'] );
+        return $BAR_VERTICAL->get( $data, $title, $color );
     }
   }
 
@@ -90,6 +92,7 @@ class Register {
    *
    * @param array $attributes
    * @param string $svg
+   * 
    * @return string
    */
   private function render_block( $attributes, $svg ) {

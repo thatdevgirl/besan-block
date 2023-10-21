@@ -1,18 +1,20 @@
 <?php
 
 /**
- * Helper class to create SVG for a vertical bar chart.
+ * BarVertical
+ * 
+ * Create the SVG for a **vertical** bar chart.
  */
 
 namespace ThreePM\BesanBlock\Chart;
 
-class BarVertical {
+class BarVertical extends Chart {
 
   private const TOTAL_HEIGHT = 400;
   private const CHART_HEIGHT = 360;
   private const LABEL_POSITION = 380;
   private const CHART_OFFSET = 10;
-  private const BAR_OFFSET = 4;
+  private const BAR_OFFSET = 2;
   private const BASE_COLOR = '#000000';
   private const FONT_SIZE = '14';
 
@@ -37,30 +39,20 @@ class BarVertical {
     $total_height = self::TOTAL_HEIGHT;
     $this->bar_base = self::TOTAL_HEIGHT - self::CHART_HEIGHT - 2;
 
+    // Get the SVG title ID.
+    $title_id = $this->get_title_id();
+
     // Construct the SVG.
     $svg = '';
-    $svg .= $this->get_title( $title );
+    $svg .= $this->get_title( $title, $title_id );
     $svg .= $this->get_axes();
     $svg .= $this->get_data( $data, $chart_color );
 
     return <<<SVG_CODE
-      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="$total_height">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="$total_height" aria-labelledby="$title_id">
         $svg
       </svg>
 SVG_CODE;
-  }
-
-
-  /**
-   * get_title()
-   *
-   * Get the SVG title code.
-   *
-   * @param string $title;
-   * @return string
-   */
-  private function get_title( $title = 'Data chart' ): string {
-    return '<title>' . $title . '</title>';
   }
 
 
@@ -74,10 +66,10 @@ SVG_CODE;
   private function get_axes(): string {
     // Save constants used in the bar code as local variables so we can use
     // them in the HEREDOC, because apparently it can't deal with constants.
-    $base_color     = self::BASE_COLOR;
-    $chart_height   = self::CHART_HEIGHT;
-    $chart_offset   = self::CHART_OFFSET;
-    $font_size      = self::FONT_SIZE;
+    $base_color   = self::BASE_COLOR;
+    $chart_height = self::CHART_HEIGHT;
+    $chart_offset = self::CHART_OFFSET;
+    $font_size    = self::FONT_SIZE;
 
     return <<<SVG_CODE
       <g class="chart-container">
@@ -127,9 +119,12 @@ SVG_CODE;
       $bar_height = $chart_height * $height_ratio;
       $bar_y_position = $chart_height - $bar_height - 1;
 
+      // Get the ARIA label for this item.
+      $aria_label = $this->get_single_aria_label( $d, $key );
+
       // Write out the data.
       $svg .= <<<SVG_CODE
-        <g role="listitem" aria-label="$key, $d" tabindex="0">
+        <g role="listitem" aria-label="$aria_label" tabindex="0">
           <rect role="presentation" x="$offset%" y="$bar_y_position" width="$bar_width%" height="$bar_height" fill="$chart_color" />
           <text role="presentation" x="$offset%" y="$label_position" fill="$base_color" font-size="$font_size">$key</text>
         </g>
