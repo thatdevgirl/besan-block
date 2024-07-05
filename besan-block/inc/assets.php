@@ -17,7 +17,7 @@ class Assets {
    */
   public function __construct() {
     add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_to_editor' ] );
-    add_action( 'admin_enqueue_scripts', [ $this, 'besan_enqueue_admin_assets' ] );
+    //add_action( 'admin_enqueue_scripts', [ $this, 'besan_enqueue_admin_assets' ] );
   }
 
 
@@ -38,6 +38,13 @@ class Assets {
       filemtime( plugin_dir_path( __FILE__ ) . self::JS_PATH )
     );
 
+    wp_enqueue_style(
+      $handle,
+      plugins_url( self::CSS_PATH, __FILE__ ),
+      [],
+      filemtime( plugin_dir_path( __FILE__ ) . self::CSS_PATH )
+    );
+
     // Get the Google API key from WP options.
     $options = get_option( 'besan_api_key' );
 
@@ -54,12 +61,7 @@ class Assets {
    * @return void
    */
   public function besan_enqueue_admin_assets(): void {
-    wp_enqueue_style(
-      'besan-editor-blocks-css',
-      plugins_url( self::CSS_PATH, __FILE__ ),
-      [],
-      filemtime( plugin_dir_path( __FILE__ ) . self::CSS_PATH )
-    );
+    
   }
 
 }

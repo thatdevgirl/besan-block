@@ -19,7 +19,7 @@ const besanIcons = {
 
   // Vertical bar chart placeholder.
   barVertical:
-    <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200' viewBox='0 0 1200 1200'>
+    <svg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 1200 1200'>
       <rect width='100%' height='100%' fill='#eee'></rect>
       <svg xmlns='http://www.w3.org/2000/svg' x='0' y='0' viewBox='0 0 100 100'>
         <path d='M4.667 12.666H21.333V79H4.667z'></path>
@@ -33,7 +33,7 @@ const besanIcons = {
 
   // Horizontal bar chart placeholder.
   barHorizontal:
-    <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200' transform='rotate(90)' viewBox='0 0 1200 1200'>
+    <svg xmlns='http://www.w3.org/2000/svg' width='300' height='300' transform='rotate(90)' viewBox='0 0 1200 1200'>
       <rect width='100%' height='100%' fill='#eee'></rect>
       <svg xmlns='http://www.w3.org/2000/svg' x='0' y='0' viewBox='0 0 100 100'>
         <path d='M4.667 12.666H21.333V79H4.667z'></path>
