@@ -13,7 +13,7 @@ Stable tag: 1.4
 
 **Important notice!**
 
-Due to a shift in my personal and professional priorities, I have decided to take a step back from development. As a result, this plugin is no longer being actively maintained. You are welcome to [fork it](https://github.com/thatdevgirl/woocommerce-tiered-flat-rate) and create your own updates. If you do so, please credit me as the original author. (I would also love to hear about this plugin’s new life!)
+Due to a shift in my personal and professional priorities, I have decided to take a step back from development. As a result, this plugin is no longer being actively maintained. You are welcome to [fork it](https://github.com/thatdevgirl/besan-block) and create your own updates. If you do so, please credit me as the original author. (I would also love to hear about this plugin’s new life!)
 
 All the best, Joni.
 
