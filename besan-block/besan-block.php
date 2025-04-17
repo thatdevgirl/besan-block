@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Besan Block
  * Description: Add a data chart block to the post editor, which can get its data from an external Google Sheet.
- * Version: 1.4
+ * Version: 1.4.1
  * Author: Joni Halabi
  * Author URI: https://jhalabi.com
  * License: GPLv2

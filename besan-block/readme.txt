@@ -7,9 +7,17 @@ Requires PHP: 7.0
 Tested up to: 6.6
 Stable tag: 1.4
 
-Add a responsive and accessible data chart block to posts and pages.
+[Deprecated!] Add a responsive and accessible data chart block to posts and pages.
 
 == Description ==
+
+**Important notice!**
+
+Due to a shift in my personal and professional priorities, I have decided to take a step back from development. As a result, this plugin is no longer being actively maintained. You are welcome to [fork it](https://github.com/thatdevgirl/woocommerce-tiered-flat-rate) and create your own updates. If you do so, please credit me as the original author. (I would also love to hear about this plugin’s new life!)
+
+All the best, Joni.
+
+--
 
 This WordPress plugin adds a responsive and accessible data chart block to the post editor. The chart feeds off of data from a publicly viewable Google sheet.
 
